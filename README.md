@@ -3,7 +3,6 @@ Aqui está o **README.md** completo, utilizando nomes fictícios para os contain
 ---
 
 ### **README.md**
-```markdown
 # Docker PS Call
 
 O **Docker PS Call** é um script em Bash interativo que facilita o gerenciamento de containers Docker. Através de uma interface simples baseada no **dialog**, o usuário pode listar containers em execução e executar ações como:
@@ -164,6 +163,4 @@ Contribuições são bem-vindas! Para sugerir melhorias, abra um pull request.
 
 **Machado-tec**
 adriano@maxado.com.br
-
-```
 
