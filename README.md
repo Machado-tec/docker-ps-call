@@ -163,28 +163,7 @@ Contribuições são bem-vindas! Para sugerir melhorias, abra um pull request.
 ## **Desenvolvido por**
 
 **Machado-tec**
+adriano@maxado.com.br
+
 ```
 
----
-
-### **Estrutura dos Arquivos**
-Para exibir as imagens corretamente no GitHub, salve as imagens no diretório `assets` do repositório e nomeie-as como:
-
-- `menu_principal.png`
-- `menu_acoes.png`
-- `confirmacao_reiniciar.png`
-
-Exemplo de estrutura do repositório:
-```
-docker-ps-call/
-│
-├── docker-ps-call.sh
-├── INSTALL.md
-├── README.md
-└── assets/
-    ├── menu_principal.png
-    ├── menu_acoes.png
-    └── confirmacao_reiniciar.png
-```
-
-Se precisar de ajustes ou melhorias, estou à disposição! 🚀
