@@ -1,0 +1,9 @@
+Package: docker-ps-call
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Machado-tec <seuemail@exemplo.com>
+Description: Script interativo para gerenciar containers Docker.
+Depend: dialog
+
