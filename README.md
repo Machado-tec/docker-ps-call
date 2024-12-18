@@ -19,7 +19,7 @@ O **Docker PS Call** é um script em Bash interativo que facilita o gerenciament
 ### **Menu Principal**
 O script lista todos os containers Docker em execução e permite selecionar um deles através de um menu.
 
-![Menu Principal](assets/menu_principal.png)
+![Menu Principal](assets/menu_principal.jpeg)
 
 **Detalhes**:
 - **Nome do Container**: Identificador legível do container.
@@ -31,7 +31,7 @@ O script lista todos os containers Docker em execução e permite selecionar um 
 
 Ao selecionar um container, um **sub-menu** será exibido com as seguintes opções:
 
-![Menu de Ações](assets/menu_acoes.png)
+![Menu de Ações](assets/menu_acoes.jpeg)
 
 1. **Executar (bash)**:  
    Abre um terminal interativo (bash) dentro do container selecionado.
@@ -50,7 +50,7 @@ Ao selecionar um container, um **sub-menu** será exibido com as seguintes opç�
 3. **Reiniciar (confirmar)**:  
    Reinicia o container após exibir uma mensagem de confirmação.
 
-   ![Confirmação de Reinício](assets/confirmacao_reiniciar.png)
+   ![Confirmação de Reinício](assets/confirmacao_reiniciar.jpeg)
 
    ```bash
    docker restart <container_id>
