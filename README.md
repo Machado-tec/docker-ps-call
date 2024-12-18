@@ -1,6 +1,7 @@
-Aqui está o **README.md** completo, utilizando nomes fictícios para os containers e aproveitando as descrições das imagens fornecidas.
 
----
+
+Obs: Se vc utiliza Debian, leia: ![INSTALL-DEBIAN-PACK.md](INSTALL-DEBIAN-PACK.md)
+
 
 ### **README.md**
 # Docker PS Call
