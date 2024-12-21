@@ -1,0 +1,230 @@
+[
+    {
+        "Id": "6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585",
+        "Created": "2024-12-21T12:23:57.48198815Z",
+        "Path": "./start.sh",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 11313,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2024-12-21T12:23:57.714987288Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:dbe2ec673a40b510edd360779587e2ba0bf5e53d81e5f9ff3b895ea569e0996c",
+        "ResolvConfPath": "/var/snap/docker/common/var-lib-docker/containers/6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585/resolv.conf",
+        "HostnamePath": "/var/snap/docker/common/var-lib-docker/containers/6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585/hostname",
+        "HostsPath": "/var/snap/docker/common/var-lib-docker/containers/6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585/hosts",
+        "LogPath": "/var/snap/docker/common/var-lib-docker/containers/6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585/6154b1d47134c70ce418610f60eeb65321fd090cd77d9e6e918ab70440b3a585-json.log",
+        "Name": "/api_gw_rf610-rf610_tool-1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": [
+            "c555b99834210d8e5daa59bcdc3667df8d7e688ccb8c59fce5c32c1fd9039b45"
+        ],
+        "HostConfig": {
+            "Binds": [
+                "/home/pollux/my-repos/api_gw_rf610/src:/root/src:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "api_gw_rf610_default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/snap/docker/common/var-lib-docker/overlay2/c771a85b40fa12bd1e6641ac9c5a8c5ed79b5ab51df9939d61052a2e56d24677-init/diff:/var/snap/docker/common/var-lib-docker/overlay2/f3709b4a1fad47b240b5c6ab79635ec229b66987c81f741531b31862ae19b98e/diff:/var/snap/docker/common/var-lib-docker/overlay2/78c455af65b5840ff22a142076f245cb87933901308d47de7c6eb10ae245c4c9/diff:/var/snap/docker/common/var-lib-docker/overlay2/c0f4a39cf294804580b5dc1c9785d810edf4ff3670a25011289f7dc8e217275b/diff:/var/snap/docker/common/var-lib-docker/overlay2/25bcdc610b90cf7f1e5da53b9cc373622b3b1f26dfe8b82f24c6a2bca1d2a910/diff:/var/snap/docker/common/var-lib-docker/overlay2/ea86792c38128525682f19243c4a6063f95b2ecc2f9bda232365c5c5622576db/diff:/var/snap/docker/common/var-lib-docker/overlay2/695f7415390f760f395e6d75edca089a593d31cc540b1144ddc0414da71f60fd/diff:/var/snap/docker/common/var-lib-docker/overlay2/43a17a183d211545ac3bda5a767f61466b672f2f9a95f53df9ebdec837b085dd/diff:/var/snap/docker/common/var-lib-docker/overlay2/6678b8942cb02d0fb8bea3e314b8584a68d416c6ed7699fe2c5bb3b893b39aa6/diff:/var/snap/docker/common/var-lib-docker/overlay2/833aa1a0ec45f03fa8eca71b0cd92feabba6e8e818620a30494f86cfceb8023d/diff:/var/snap/docker/common/var-lib-docker/overlay2/6b890165c2d83595cfc44783e81a4e67b93e1a9b6a6d37f3ba5c33b732819a2c/diff:/var/snap/docker/common/var-lib-docker/overlay2/0e1ba0e9f2f0480b48ef2849ed05b57e6a22fa04a8c10d8498e4a0a7c405f722/diff:/var/snap/docker/common/var-lib-docker/overlay2/11d28e470edefaddf76384aae2a6bdda9b4289b885c78f59812b7fcaffaedc73/diff",
+                "MergedDir": "/var/snap/docker/common/var-lib-docker/overlay2/c771a85b40fa12bd1e6641ac9c5a8c5ed79b5ab51df9939d61052a2e56d24677/merged",
+                "UpperDir": "/var/snap/docker/common/var-lib-docker/overlay2/c771a85b40fa12bd1e6641ac9c5a8c5ed79b5ab51df9939d61052a2e56d24677/diff",
+                "WorkDir": "/var/snap/docker/common/var-lib-docker/overlay2/c771a85b40fa12bd1e6641ac9c5a8c5ed79b5ab51df9939d61052a2e56d24677/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/pollux/my-repos/api_gw_rf610/src",
+                "Destination": "/root/src",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "6154b1d47134",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PYTHONPATH=/root/app",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "PYTHON_VERSION=3.14.0a3",
+                "PYTHON_SHA256=94349df207456a575a8867c20b4ca434f870e1920dcdcc8fdf797e1af49abe90"
+            ],
+            "Cmd": [
+                "./start.sh"
+            ],
+            "Image": "rf610:latest",
+            "Volumes": null,
+            "WorkingDir": "/root/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "c290e4d28411c1328a518c35a19d184112f0bfeb8339f619111789fcad97b950",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:b265e9bc07d2cf8b5a9b7f6bb8e20d09527e1a140f25f1761a594bcb0ce8ba42",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "api_gw_rf610",
+                "com.docker.compose.project.config_files": "/home/pollux/my-repos/api_gw_rf610/docker-compose.yaml",
+                "com.docker.compose.project.working_dir": "/home/pollux/my-repos/api_gw_rf610",
+                "com.docker.compose.service": "rf610_tool",
+                "com.docker.compose.version": "2.20.3"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "d52281417e3e51082bd4fa66b6cb4494819717ddef0a9a56dc48338f280437f4",
+            "SandboxKey": "/run/snap.docker/netns/d52281417e3e",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "api_gw_rf610_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "api_gw_rf610-rf610_tool-1",
+                        "rf610_tool"
+                    ],
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null,
+                    "NetworkID": "3bbf0925522bdc28036395bb80960b44679f70aead8046975c344ca920c9ea4b",
+                    "EndpointID": "d118376fb12e3f18840f12eafd543662bf0bfd39837d23b646dd2fe47d5dd58b",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "api_gw_rf610-rf610_tool-1",
+                        "rf610_tool",
+                        "6154b1d47134"
+                    ]
+                }
+            }
+        }
+    }
+]

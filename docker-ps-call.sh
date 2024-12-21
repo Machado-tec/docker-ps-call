@@ -20,6 +20,32 @@ menu_principal() {
     exit 0
   fi
 }
+# Função: Inspecionar container
+inspecionar_container() {
+  local container_id="$1"
+  local container_inspect=$(sudo docker inspect "$container_id")
+
+  local container_name=$(echo "$container_inspect" | jq -r '.[0].Name' | sed 's|/||')
+  local image=$(echo "$container_inspect" | jq -r '.[0].Config.Image')
+  local network_name=$(echo "$container_inspect" | jq -r '.[0].NetworkSettings.Networks | keys[]')
+  local ip_address=$(echo "$container_inspect" | jq -r ".[0].NetworkSettings.Networks[\"$network_name\"].IPAddress")
+  local hostname=$(echo "$container_inspect" | jq -r '.[0].Config.Hostname')
+  local compose_file=$(echo "$container_inspect" | jq -r '.[0].Config.Labels["com.docker.compose.project.config_files"]')
+  local started_at=$(echo "$container_inspect" | jq -r '.[0].State.StartedAt')
+
+  # Calcula o uptime
+  local uptime=$(date -u -d "@$(($(date +%s) - $(date -d "$started_at" +%s)))" +"%H:%M:%S")
+
+  # Exibe as informações
+  dialog --msgbox "Container: $container_name
+Imagem: $image
+Rede: $network_name
+IP: $ip_address
+Hostname: $hostname
+Compose File: $compose_file
+Uptime: $uptime" 15 70
+  clear
+}
 
 # Menu secundário: ações no container selecionado
 menu_secundario() {
@@ -29,7 +55,8 @@ menu_secundario() {
     local action=$(dialog --menu "Ações para o container: $container_id" 20 60 10 \
       1 "Executar (bash)" \
       2 "Listar (logs)" \
-      3 "Reiniciar (confirmar)" 2>&1 >/dev/tty)
+      3 "Reiniciar (confirmar)" \
+      4 "Inspecionar (informações filtradas)" 2>&1 >/dev/tty)
 
     clear
 
@@ -37,6 +64,7 @@ menu_secundario() {
       1) executar_bash "$container_id" ;;
       2) listar_logs "$container_id" ;;
       3) confirmar_reinicio "$container_id" ;;
+      4) inspecionar_container "$container_id" ;;
       *) break ;;  # Esc volta ao menu principal
     esac
   done
