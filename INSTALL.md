@@ -38,6 +38,7 @@ O **dialog** é utilizado para criar os menus no terminal. Instale com:
 
 ```bash
 sudo apt install dialog -y
+sudo apt install jq -y 
 ```
 
 ---
