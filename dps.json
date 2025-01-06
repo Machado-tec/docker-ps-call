@@ -1,0 +1,18 @@
+{
+  "1": {
+    "Name": "Uptime",
+    "Command": "/usr/bin/uptime"
+  },
+  "2": {
+    "Name": "Live Testes 01",
+    "Command": "/usr/local/bin/python /app/live_tests_from/main.py -m /app/live_tests_from/mes-request_POSITIONS_all.json"
+  },
+  "3": {
+    "Name": "Listar Diretório Home",
+    "Command": "ls -la /root"
+  },
+  "4": {
+    "Name": "Restart Serviço",
+    "Command": "systemctl restart my-service"
+  }
+}
