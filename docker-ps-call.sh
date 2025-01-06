@@ -47,6 +47,54 @@ Uptime: $uptime" 15 70
   clear
 }
 
+submenu_dps_json() {
+  local container_id="$1"
+
+  # Verifica se o arquivo dps.json existe no container
+  if sudo docker exec "$container_id" test -f /root/dps.json; then
+    # Lê o conteúdo do dps.json diretamente no container
+    local json_content=$(sudo docker exec "$container_id" cat /root/dps.json)
+
+    # Valida se o JSON está bem formatado
+    if ! echo "$json_content" | jq empty; then
+      dialog --msgbox "O arquivo '/root/dps.json' está mal formatado. Verifique o conteúdo." 10 40
+      return
+    fi
+
+    # Gera as opções do menu a partir do JSON
+    local menu_items=()
+    while IFS= read -r key; do
+      # Adiciona pares (chave e Nome) ao array, garantindo que a chave seja tratada como string
+      local name=$(echo "$json_content" | jq -r ".\"$key\".Name")
+      menu_items+=("$key" "$name")
+    done < <(echo "$json_content" | jq -r 'keys[]')
+
+    # Cria o menu com os comandos personalizados
+    local action=$(dialog --menu "Comandos Customizados" 20 60 10 "${menu_items[@]}" 2>&1 >/dev/tty)
+    clear
+
+    if [ -n "$action" ]; then
+      # Obtém o comando correspondente à seleção
+      local command=$(echo "$json_content" | jq -r --arg key "$action" '.[$key | tostring].Command')
+
+      if [ -n "$command" ] && [ "$command" != "null" ]; then
+        # Executa o comando no container
+        dialog --msgbox "Executando: $command" 10 40
+        sudo docker exec -it "$container_id" bash -c "$command"
+        echo "Pressione ENTER"
+        read 
+      else
+        dialog --msgbox "Comando não encontrado para a opção selecionada." 10 40
+      fi
+    else
+      dialog --msgbox "Nenhuma opção selecionada." 10 40
+    fi
+  else
+    dialog --msgbox "Arquivo '/root/dps.json' não encontrado no container $container_id." 10 40
+  fi
+
+  clear
+}
 # Função: Submenu para commit e save
 submenu_commit_save() {
   local container_id="$1"
@@ -137,12 +185,13 @@ menu_secundario() {
   local container_id="$1"
 
   while true; do
-    local action=$(dialog --menu "Ações para o container: $container_id" 20 60 10 \
-      1 "Executar (bash)" \
-      2 "Listar (logs)" \
-      3 "Reiniciar (confirmar)" \
-      4 "Inspecionar (informações filtradas)" \
-      5 "Commit e Save da imagem" 2>&1 >/dev/tty)
+  local action=$(dialog --menu "Ações para o container: $container_id" 20 60 10 \
+    1 "Executar (bash)" \
+    2 "Listar (logs)" \
+    3 "Reiniciar (confirmar)" \
+    4 "Inspecionar (informações filtradas)" \
+    5 "Commit e Save da imagem" \
+    6 "Comandos Customizados em /root/dps.json" 2>&1 >/dev/tty)
 
     clear
 
@@ -152,6 +201,7 @@ menu_secundario() {
       3) confirmar_reinicio "$container_id" ;;
       4) inspecionar_container "$container_id" ;;
       5) submenu_commit_save "$container_id" ;;
+      6) submenu_dps_json "$container_id" ;;
       *) break ;;  # Esc volta ao menu principal
     esac
   done
