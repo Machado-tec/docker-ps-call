@@ -1,16 +1,35 @@
 #!/bin/bash
 
 # Lista os containers e gera o menu principal
-menu_principal() {
-  sudo docker ps --format '{{.ID}} {{.Names}}' | awk '{print $2, $1}' > /tmp/container_list.txt
+FILE=/tmp/container_list.txt.$$
 
-  if [ ! -s /tmp/container_list.txt ]; then
+# Função para obter o cabeçalho dinâmico
+get_header() {
+  local version="DPS:0.1 - By Xadrak"
+  local hostname=$(hostname)
+  echo "$version $separator Host: '$hostname'"
+}
+
+# Função: Exibir status dos containers
+exibir_status_containers() {
+  echo "Exibindo status de todos os containers em execução (CTRL+C para sair)..."
+  sleep 1
+  sudo docker stats
+  echo "Pressione ENTER para retornar ao DPS"
+  read
+}
+menu_principal() {
+  sudo docker ps --format '{{.ID}} {{.Names}}' | awk '{print $2, $1}' | sort > $FILE 
+
+  if [ ! -s $FILE  ]; then
     dialog --msgbox "Nenhum container em execução." 10 40
     clear
     exit 1
   fi
 
-  local selection=$(dialog --menu "Selecione o container:" 20 60 10 $(cat /tmp/container_list.txt) 2>&1 >/dev/tty)
+
+
+  local selection=$(dialog  --title "$(get_header)" --menu "Selecione o container:" 20 60 10 $(cat $FILE ) 2>&1 >/dev/tty)
   clear
 
   if [ -n "$selection" ]; then
@@ -80,8 +99,9 @@ submenu_dps_json() {
       if [ -n "$command" ] && [ "$command" != "null" ]; then
         # Executa o comando no container
         dialog --msgbox "Executando: $command" 10 40
+        clear 
         sudo docker exec -it "$container_id" bash -c "$command"
-        echo "Pressione ENTER"
+        echo "Pressione ENTER para retornar ao dps"
         read 
       else
         dialog --msgbox "Comando não encontrado para a opção selecionada." 10 40
@@ -185,23 +205,34 @@ menu_secundario() {
   local container_id="$1"
 
   while true; do
-  local action=$(dialog --menu "Ações para o container: $container_id" 20 60 10 \
-    1 "Executar (bash)" \
-    2 "Listar (logs)" \
+    local action=$(dialog --title "$(get_header)" \
+      --menu "Ações para o container: $container_id" 20 70 10 \
+    0 "Executar (bash)" \
+    1 "Customizados /root/dps.json" 2>&1 >/dev/tty \
+    2 "Listar    (logs)" \
     3 "Reiniciar (confirmar)" \
-    4 "Inspecionar (informações filtradas)" \
-    5 "Commit e Save da imagem" \
-    6 "Comandos Customizados em /root/dps.json" 2>&1 >/dev/tty)
+    4 "Pause     (confirmar)" \
+    5 "UnPause   (confirmar)" \
+    6 "Stop      (confirmar)" \
+    7 "Start     (confirmar)" \
+    8 "Inspecionar (informações filtradas)" \
+    9 "Commit e Save da imagem" \
+   10 "Exibir status (docker stats)")
 
     clear
 
     case "$action" in
-      1) executar_bash "$container_id" ;;
+      0) executar_bash "$container_id" ;;
+      1) submenu_dps_json "$container_id" ;;
       2) listar_logs "$container_id" ;;
       3) confirmar_reinicio "$container_id" ;;
-      4) inspecionar_container "$container_id" ;;
-      5) submenu_commit_save "$container_id" ;;
-      6) submenu_dps_json "$container_id" ;;
+      4) confirmar_pause    "$container_id" ;;
+      5) confirmar_unpause    "$container_id" ;;
+      6) confirmar_stop     "$container_id" ;;
+      7) confirmar_start    "$container_id" ;;
+      8) inspecionar_container "$container_id" ;;
+      9) submenu_commit_save "$container_id" ;;
+      10) exibir_status_containers ;;
       *) break ;;  # Esc volta ao menu principal
     esac
   done
@@ -213,6 +244,7 @@ executar_bash() {
   sudo docker exec -it "$1" bash
 }
 
+
 # Função: Listar logs em tempo real
 listar_logs() {
   echo "Exibindo logs em tempo real do container $1 (Ctrl+C para sair)..."
@@ -221,17 +253,34 @@ listar_logs() {
 }
 
 # Função: Confirmar reinício do container
-confirmar_reinicio() {
-  dialog --yesno "Tem certeza que deseja reiniciar o container $1?" 10 40
+confirmar_start()
+{
+  confirmar_restart_stop_start_pause_unpause_unpause "start" "$1"
+}
+
+confirmar_pause() {
+  confirmar_restart_stop_start_pause_unpause_unpause "pause" "$1"
+}
+
+confirmar_unpause() {
+  confirmar_restart_stop_start_pause_unpause_unpause "unpause" "$1"
+}
+confirmar_restart_stop_start_pause_unpause_unpause(){
+  dialog --yesno "Tem certeza que deseja $1 o container $2?" 10 40
   if [ $? -eq 0 ]; then
-    echo "Reiniciando o container $1..."
-    sudo docker restart "$1"
-    echo "Container $1 reiniciado com sucesso."
-    sleep 2
+    echo "$1 o container $2..."
+    sudo docker $1 "$2"
+    echo "Container $2 $1 com sucesso."
   else
-    echo "Reinício cancelado."
+    echo "$1 cancelado."
     sleep 1
-  fi
+  fi 
+}
+confirmar_stop() {
+  confirmar_restart_stop_start_pause_unpause_unpause "stop" "$1"
+}
+confirmar_reinicio() {
+  confirmar_restart_stop_start_pause_unpause_unpause "restart" "$1"
 }
 
 # Inicia o menu principal

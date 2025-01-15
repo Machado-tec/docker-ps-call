@@ -1,0 +1,16 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch feature/stations_names_fixture
+# Your branch is up to date with 'origin/feature/stations_names_fixture'.
+#
+# Changes to be committed:
+#       modified:   modapp_mes/alembic_modapp_mes/__init__.py
+#       deleted:    modapp_mes/alembic_modapp_mes/versions/2af7f1108991_init.py
+#       new file:   modapp_mes/alembic_modapp_mes/versions/__init__.py
+#       modified:   modapp_mes/db/fixtures/mes_positions.py
+#       modified:   modapp_mes/db/models/mes_transport.py
+#       modified:   modapp_mes/db/models/mes_transport_type.py
+#       modified:   modapp_mes/routes/mes_position.py
+#
